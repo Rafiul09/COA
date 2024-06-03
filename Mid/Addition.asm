@@ -32,7 +32,7 @@ main proc
     mov dl,13
     int 21h   
     
-     mov ah,9    ;disp db  enter number 2: 
+    mov ah,9     ;disp db  enter number 2: 
     lea dx,in2
     int 21h
     
@@ -45,7 +45,7 @@ main proc
     int 21h
       
     
-     mov ah,9    ;disp db Addition of 
+    mov ah,9     ;disp db Addition of 
     lea dx,pr1
     int 21h
     
@@ -56,7 +56,7 @@ main proc
     int 21h 
        
     
-     mov ah,9    ;disp db and
+    mov ah,9     ;disp db and
     lea dx,pr2
     int 21h
    
@@ -64,16 +64,16 @@ main proc
     mov dl,bl
     int 21h 
     
-     mov ah,9    ;disp db is 
+    mov ah,9     ;disp db is 
     lea dx,pr3
     int 21h   
     
  
     
-    add bh,bl      ;add
+    add bh,bl    ;add
     sub bh,30h
     
-    mov ah, 2
+    mov ah, 2    ;disp res
     mov dl,bh
     int 21h  
     
