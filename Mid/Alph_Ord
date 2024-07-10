@@ -1,0 +1,135 @@
+.model small
+.stack 100h
+.data
+a db ?
+b db ?
+e db 'Enter two Alphabets: $'
+ord db 'Correct order is: $'  
+i db 'Invalid input$'
+nl db 10,13,'$'
+.code
+main proc
+mov ax, @data
+mov ds, ax
+
+ mov cx, 0
+
+ ;first alp
+mov ah, 9
+lea dx, e
+int 21h
+
+mov ah, 1
+int 21h   
+mov a, al
+
+; Check alp
+cmp a, 65
+jl invalid_input
+cmp a, 90 
+JL sec_aplha:
+JG CHK
+
+CHK:
+CMP a,97
+JL invalid_input
+CMP a,122
+JG invalid_input 
+
+            
+    
+                         
+;second number
+sec_aplha:   
+mov ah, 1
+int 21h  
+mov b, al
+
+
+; Check alp
+cmp b, 65
+jl invalid_input
+cmp b, 90   
+jl comp
+JG CHK2
+
+CHK2:
+CMP b,97
+JL invalid_input
+CMP b,122
+JG invalid_input 
+
+
+comp:
+; Compare 
+mov al, a
+cmp al, b  
+
+je numbers_equal
+jg first_greater
+jl second_greater
+
+first_greater: 
+mov ah,9     ;nl
+lea dx,nl
+int 21h
+
+mov ah, 9
+lea dx, ord
+int 21h
+
+mov dl, b
+mov ah, 2
+int 21h
+mov dl, a
+mov ah, 2
+int 21h
+
+
+jmp exit
+
+second_greater:
+mov ah,9     ;nl
+lea dx,nl
+int 21h 
+
+mov ah, 9
+lea dx, ord
+int 21h
+
+mov dl, a
+mov ah, 2
+int 21h
+mov dl, b
+mov ah, 2
+int 21h
+jmp exit
+
+numbers_equal:
+mov ah,9     ;nl
+lea dx,nl
+int 21h
+
+mov ah, 9
+lea dx, ord
+int 21h
+
+mov dl, a
+mov ah, 2
+int 21h
+mov dl, b
+mov ah, 2
+int 21h
+jmp exit
+
+invalid_input:
+mov ah, 9
+lea dx, i
+int 21h
+
+exit:
+mov ah, 4Ch
+int 21h
+
+main endp
+end main
