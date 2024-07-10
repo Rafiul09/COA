@@ -27,7 +27,7 @@ mov a, al
 cmp a, 65
 jl invalid_input
 cmp a, 90 
-JL sec_aplha:
+JL sec_aplha
 JG CHK
 
 CHK:
